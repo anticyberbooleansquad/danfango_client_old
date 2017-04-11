@@ -9,6 +9,7 @@ package com.mycompany.danfango_client;
  *
  * @author johnlegutko
  */
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -72,6 +73,18 @@ public class ClientXMLGenerator {
             xMLStreamWriter.writeCharacters(movie.get("Runtime").toString());
             xMLStreamWriter.writeEndElement();
             
+            xMLStreamWriter.writeStartElement("actors");
+            xMLStreamWriter.writeCharacters(movie.get("Actors").toString());
+            xMLStreamWriter.writeEndElement();
+            
+            xMLStreamWriter.writeStartElement("director");
+            xMLStreamWriter.writeCharacters(movie.get("Director").toString());
+            xMLStreamWriter.writeEndElement();
+            
+            xMLStreamWriter.writeStartElement("writer");
+            xMLStreamWriter.writeCharacters(movie.get("Writer").toString());
+            xMLStreamWriter.writeEndElement();
+            
             xMLStreamWriter.writeEndElement();
 
         }
@@ -85,20 +98,14 @@ public class ClientXMLGenerator {
         String xmlString = stringWriter.getBuffer().toString();
         stringWriter.close();
         System.out.println(xmlString);
+        
+        FileWriter fw = new FileWriter("movieAgency.xml");
+        fw.write(xmlString);
+        fw.close();
 
     }
+    
+   
 
 }
 
-//                    System.out.println("names: " + jsonObj.names());
-//                    System.out.println("Title: " + jsonObj.get("Title"));
-//                    System.out.println("Year: " + jsonObj.get("Year"));
-//                    System.out.println("Rated: " + jsonObj.get("Rated"));
-//                    System.out.println("Released: " + jsonObj.get("Released"));
-//                    System.out.println("imdbID: " + jsonObj.get("imdbID"));
-//                    System.out.println("imdbRating: " + jsonObj.get("imdbRating"));
-//                    System.out.println("Genre: " + jsonObj.get("Genre"));
-//                    System.out.println("Plot: " + jsonObj.get("Plot"));
-//                    System.out.println("Poster: " + jsonObj.get("Poster"));
-//                    System.out.println("Runtime: " + jsonObj.get("Runtime"));
-//                    System.out.println("\n");

@@ -30,20 +30,25 @@ public class MovieScraper {
 
     public static void scrape() throws IOException, XMLStreamException {
         Document doc;
+        ArrayList<JSONObject> movies;
         String year2016 = "http://www.imdb.com/search/title?year=2016,2016&title_type=feature&sort=moviemeter,asc&view=simple";
         String year2017 = "http://www.imdb.com/search/title?year=2017,2017&title_type=feature&sort=moviemeter,asc&view=simple";
         String year2018 = "http://www.imdb.com/search/title?year=2018,2018&title_type=feature&sort=moviemeter,asc&view=simple";
 
         doc = Jsoup.connect(year2016).get();
-        parseHTML(doc);
+        movies = parseHTML(doc);
         doc = Jsoup.connect(year2017).get();
-        parseHTML(doc);
+        movies.addAll(parseHTML(doc));
         doc = Jsoup.connect(year2018).get();
-        parseHTML(doc);
+        movies.addAll(parseHTML(doc));
+
+        ClientXMLGenerator generator = new ClientXMLGenerator();
+        generator.genMovieXMLFile(movies);
+        
 
     }
 
-    public static void parseHTML(Document doc) throws IOException, XMLStreamException {
+    public static ArrayList<JSONObject> parseHTML(Document doc) throws IOException, XMLStreamException {
         ArrayList<String> hrefs = new ArrayList();
         ArrayList<String> imdbids = new ArrayList();
         ArrayList<JSONObject> movies = new ArrayList();
@@ -77,9 +82,9 @@ public class MovieScraper {
 
             }
         }
-        
-        ClientXMLGenerator generator = new ClientXMLGenerator();
-        generator.genMovieXMLFile(movies);
+
+        return movies;
+
     }
 
 }
