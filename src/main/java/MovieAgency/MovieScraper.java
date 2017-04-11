@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.danfango_client;
+package MovieAgency;
 
+import XMLGenerator.ClientXMLGenerator;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -24,11 +25,7 @@ import org.json.JSONObject;
  */
 public class MovieScraper {
 
-    public static void main(String[] args) throws IOException, XMLStreamException {
-        scrape();
-    }
-
-    public static void scrape() throws IOException, XMLStreamException {
+    public void scrape() throws IOException, XMLStreamException {
         Document doc;
         ArrayList<JSONObject> movies;
         String year2016 = "http://www.imdb.com/search/title?year=2016,2016&title_type=feature&sort=moviemeter,asc&view=simple";

@@ -95,7 +95,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.mycompany.danfango_client.MovieScraper</mainClass>
+                            <mainClass>Main.AgencyController</mainClass>
                             <arguments>
                                 <argument>myArg1</argument>
                                 <argument>myArg2</argument>

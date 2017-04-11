@@ -1,2 +1,3 @@
-com/mycompany/danfango_client/ClientXMLGenerator.class
-com/mycompany/danfango_client/MovieScraper.class
+Main/AgencyController.class
+MovieAgency/MovieScraper.class
+XMLGenerator/ClientXMLGenerator.class

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.danfango_client;
+package XMLGenerator;
 
 /**
  *
@@ -105,6 +105,49 @@ public class ClientXMLGenerator {
 
     }
     
+    
+    public void genTheatreXMLFile(ArrayList<JSONObject> theatres) throws XMLStreamException, IOException {
+        StringWriter stringWriter = new StringWriter();
+
+        XMLOutputFactory xMLOutputFactory = XMLOutputFactory.newInstance();
+        XMLStreamWriter xMLStreamWriter = xMLOutputFactory.createXMLStreamWriter(stringWriter);
+
+        xMLStreamWriter.writeStartDocument();
+        xMLStreamWriter.writeStartElement("theatres"); //start outer movies
+
+        for (JSONObject theatre : theatres) {
+
+            xMLStreamWriter.writeStartElement("theatre");
+
+            xMLStreamWriter.writeStartElement("agencyID");
+            xMLStreamWriter.writeCharacters(theatre.get("id").toString());
+            xMLStreamWriter.writeEndElement();
+            
+            xMLStreamWriter.writeStartElement("name");
+            xMLStreamWriter.writeCharacters(theatre.get("name").toString());
+            xMLStreamWriter.writeEndElement();
+
+              
+            
+            xMLStreamWriter.writeEndElement();
+
+        }
+
+        xMLStreamWriter.writeEndElement(); //end outer theatres
+
+        xMLStreamWriter.writeEndDocument();
+        xMLStreamWriter.flush();
+        xMLStreamWriter.close();
+
+        String xmlString = stringWriter.getBuffer().toString();
+        stringWriter.close();
+        System.out.println(xmlString);
+        
+        FileWriter fw = new FileWriter("theatreAgency.xml");
+        fw.write(xmlString);
+        fw.close();
+
+    }
    
 
 }
