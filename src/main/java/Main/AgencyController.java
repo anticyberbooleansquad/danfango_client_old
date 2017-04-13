@@ -20,11 +20,9 @@ public class AgencyController {
     public static void main(String[] args) throws IOException, XMLStreamException {
         MovieScraper ms = new MovieScraper();
         ms.scrape();
-//        MoviePush mp = new MoviePush();
-//        mp.push("iwjwu","ijwuijw");
         
         TheatreScraper ts = new TheatreScraper();
-        ts.getTheatreIds();
+        ts.getTheatres();
     }
     
 }

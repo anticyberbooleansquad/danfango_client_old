@@ -34,7 +34,7 @@ public class MovieScraper {
 
         doc = Jsoup.connect(year2016).get();
         movies = parseHTML(doc);
-        doc = Jsoup.connect(year2017).get();
+        doc = Jsoup.connect(year2017).get(); 
         movies.addAll(parseHTML(doc));
         doc = Jsoup.connect(year2018).get();
         movies.addAll(parseHTML(doc));
@@ -64,11 +64,10 @@ public class MovieScraper {
 
         for (String id : imdbids) {
             URL omdb = new URL("http://www.omdbapi.com/?i=" + id);
-            try (BufferedReader in = new BufferedReader(
-                    new InputStreamReader(omdb.openStream()))) {
-                String inputLine;
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(omdb.openStream()))) {
+                String inputLine =  in.readLine();
                 JSONObject jsonObj = null;
-                if ((inputLine = in.readLine()) != null) {
+                if (inputLine != null) {
                     System.out.println(inputLine);
                     jsonObj = new JSONObject(inputLine);
 
