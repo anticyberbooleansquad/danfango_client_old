@@ -127,7 +127,7 @@ public class ClientXMLGenerator {
             xMLStreamWriter.writeCharacters(theatre.get("name").toString());
             xMLStreamWriter.writeEndElement();
 
-              
+              ///////////
             
             xMLStreamWriter.writeEndElement();
 
