@@ -24,23 +24,21 @@ import org.jsoup.select.Elements;
 public class TheatreScraper {
 
     public void getTheatreIds() throws IOException, XMLStreamException {
+        ArrayList<JSONObject> theatres = new ArrayList();
         ArrayList<String> theatreids = new ArrayList();
 
-        
-            URL gracenote = new URL("http://data.tmsapi.com/v1.1/theatres?zip=11757&radius=100&units=mi&numTheatres=1000&api_key=7k72q6prdt4z44t764r3jw7t");
-            try (BufferedReader in = new BufferedReader(new InputStreamReader(gracenote.openStream()))) {
-                String inputLine;
-                JSONObject jsonObj = null;
-                if ((inputLine = in.readLine()) != null) {
-                    System.out.println(inputLine);
-                    jsonObj = new JSONObject(inputLine);
-                    
-                    for(JSONObject obj: gracenote)
-                    theatreids.add(obj.get("theatreID").toString());
+        URL gracenote = new URL("http://data.tmsapi.com/v1.1/theatres?zip=11757&radius=100&units=mi&numTheatres=1000&api_key=7k72q6prdt4z44t764r3jw7t");
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(gracenote.openStream()))) {
+            String inputLine;
+            JSONObject jsonObj = null;
+            if ((inputLine = in.readLine()) != null) {
+                System.out.println(inputLine);
+                jsonObj = new JSONObject(inputLine);
 
-                }
+                theatres.add(jsonObj);
 
-           
+            }
+
         }
 
         System.out.println(Arrays.toString(theatreids.toArray()));
