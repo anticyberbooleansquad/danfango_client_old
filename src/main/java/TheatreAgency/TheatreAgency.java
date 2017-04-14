@@ -22,7 +22,7 @@ import org.jsoup.select.Elements;
  *
  * @author johnlegutko
  */
-public class TheatreScraper {
+public class TheatreAgency {
 
     public void getTheatres() throws IOException, XMLStreamException {
         ArrayList<JSONObject> theatres = new ArrayList();

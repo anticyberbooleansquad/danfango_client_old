@@ -23,7 +23,7 @@ import org.json.JSONObject;
  *
  * @author johnlegutko
  */
-public class MovieScraper {
+public class MovieAgency {
 
     public void scrape() throws IOException, XMLStreamException {
         Document doc;
@@ -47,7 +47,7 @@ public class MovieScraper {
 
     public static ArrayList<JSONObject> parseHTML(Document doc) throws IOException, XMLStreamException {
         ArrayList<String> hrefs = new ArrayList();
-        ArrayList<String> imdbids = new ArrayList();
+        ArrayList<String> imdbIds = new ArrayList();
         ArrayList<JSONObject> movies = new ArrayList();
         Elements movieTitles = doc.select("div.col-title > span > span > a");
 
@@ -57,12 +57,12 @@ public class MovieScraper {
 
         for (String s : hrefs) {
             String id = s.substring(7, 16);
-            imdbids.add(id);
+            imdbIds.add(id);
         }
 
-        System.out.println(Arrays.toString(imdbids.toArray()));
+        System.out.println(Arrays.toString(imdbIds.toArray()));
 
-        for (String id : imdbids) {
+        for (String id : imdbIds) {
             URL omdb = new URL("http://www.omdbapi.com/?i=" + id);
             try (BufferedReader in = new BufferedReader(new InputStreamReader(omdb.openStream()))) {
                 String inputLine =  in.readLine();
@@ -70,12 +70,10 @@ public class MovieScraper {
                 if (inputLine != null) {
                     System.out.println(inputLine);
                     jsonObj = new JSONObject(inputLine);
-
                     if (!jsonObj.isNull("Title")) {
                         movies.add(jsonObj);
                     }
                 }
-
             }
         }
 
