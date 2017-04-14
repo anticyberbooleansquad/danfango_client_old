@@ -18,8 +18,10 @@ import javax.xml.stream.XMLStreamException;
 public class AgencyController {
     
     public static void main(String[] args) throws IOException, XMLStreamException {
+
         MovieAgency ms = new MovieAgency();
         //ms.scrape();
+
         
         TheatreAgency ts = new TheatreAgency();
         ts.getTheatres();
